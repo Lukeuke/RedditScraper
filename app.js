@@ -10,6 +10,7 @@ const category = {
 Object.freeze(category);
 
 console.log("Milego przegladania :)")
+console.log("by: https://luuqe.tk/");
 
 document.title = `Browsing pics from r/${subredditName}`;
 
@@ -26,6 +27,8 @@ async function fetchData() {
     document.getElementById("anime_baby").remove();
   }
 
+  var container = document.getElementById("container");
+
   try {
 
     let parentdiv = document.createElement("div");
@@ -36,7 +39,6 @@ async function fetchData() {
     for (let index = 0; index < body.data.children.length; index++) {
       if (body.data.children[index].data.post_hint === "image") {
   
-        let container = document.getElementById("container");
         let div = document.createElement("div");
         let h4 = document.createElement("h4");
         let image = document.createElement("img");
@@ -49,10 +51,9 @@ async function fetchData() {
         div.appendChild(h4);
         div.appendChild(image);
         parentdiv.appendChild(div);
-        container.appendChild(parentdiv);
       }
     }
-    document.body.appendChild(parentdiv);
+    container.appendChild(parentdiv);
 
   } catch (e) {
     console.log(`Error: ${e}`)

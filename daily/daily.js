@@ -1,5 +1,5 @@
 var after = "";
-var subredditName = "poland";
+var subredditName = "kemonomimi";
 
 // kemonomimi
 
@@ -11,7 +11,7 @@ Object.freeze(category);
 
 console.log("Milego przegladania :)")
 
-document.title = `Pics from r/${subredditName}`;
+document.title = `Daily pic from r/${subredditName}`;
 
 async function fetchDailyData() {
 
@@ -32,14 +32,31 @@ async function fetchDailyData() {
       parentdiv.id = "anime_baby";
     
       after = body.data.after;
-      var dailyNumer = getCurrentDay();
+      var dailyNumer = getCurrentDay(); // Jak na razie hardcode póki nie ogarne
       console.log(body.data.children)
-      console.log(dailyNumer)
-      console.log(getCurrentDay())
-  
+      console.log(body.data.children[dailyNumer].data.url)
+      console.log(body.data.children[dailyNumer].data.post_hint === "image")
+      
+      var container = document.getElementById("container");
+      
+      if(body.data.children[dailyNumer].data.post_hint !== "image"){
+        let h4 = document.createElement("h4");
+        let a = document.createElement("a");
+
+        h4.textContent = "Couldn't get image, because its wrong format";
+        a.href = `${body.data.children[dailyNumer].data.url}`;
+        a.textContent = "Link";
+
+        displayCategory.textContent = `Category: ${getCategory}`;
+        displaySubredditName.textContent = `Subreddit: ${subredditName}`;
+
+        parentdiv.appendChild(h4);
+        parentdiv.appendChild(a);
+        container.appendChild(parentdiv)
+      }
+
       if (body.data.children[dailyNumer].data.post_hint === "image") {
   
-        let container = document.getElementById("container");
         let div = document.createElement("div");
         let h4 = document.createElement("h4");
         let image = document.createElement("img");
@@ -54,29 +71,23 @@ async function fetchDailyData() {
         parentdiv.appendChild(div);
         container.appendChild(parentdiv);
       }
-      document.body.appendChild(parentdiv);
+      container.appendChild(parentdiv);
   
     } catch (e) {
       console.log(`Error: ${e}`)
     }
   }
-  
-  function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-  
-  function getCurrentDay() {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-  
-    today = mm + '/' + dd + '/' + yyyy;
     
-    if(dd >= 24) {
-      dd =- 7;
-    }
-    return dd;
+function getCurrentDay() {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  
+  if(dd >= 24) {
+    dd =- 7;
   }
+  return dd;
+}
