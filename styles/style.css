@@ -29,3 +29,18 @@ img {
 .header {
     color: var(--textcolor);
 }
+
+.category p {
+    color: var(--textcolor);
+}
+
+.category {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.category_text {
+    color: var(--textcolor);
+}

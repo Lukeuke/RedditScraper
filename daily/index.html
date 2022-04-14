@@ -5,12 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../style.css">
-    <script src="../app.js"></script>
+    <script src="./daily.js"></script>
+    <link rel="stylesheet" href="../styles/style.css">
 
-    <title>Daily content for mc hard</title>
 </head>
 <body onload="fetchDailyData()">
     <h1 class="header">Daily content</h1>
+    <div id="container">
+        <div class="category">
+            <p>
+                <span id="category_text" class="category_text">Category: </span>,
+                <span id="subreddit_name" class="category_text">Subreddit: </span>
+            </p>
+        </div>
+    </div>
 </body>
 </html>

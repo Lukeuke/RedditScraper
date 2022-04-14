@@ -5,12 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <script src="./app.js"></script>
 
     <title>Reddit Scraper</title>
 </head>
 <body onload="fetchData()">
-    <div id="container"></div>
+    <div id="container">
+        <div class="category">
+            <p>
+                <span id="category_text" class="category_text">Category: </span>,
+                <span id="subreddit_name" class="category_text">Subreddit: </span>
+            </p>
+        </div>
+    </div>
 </body>
 </html>
