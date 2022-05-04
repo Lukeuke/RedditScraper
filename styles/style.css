@@ -1,16 +1,37 @@
 :root {
     --bgcolor: #1A1A1B;
     --textcolor: rgb(234, 234, 236);
+    --bg-header-color: #2f2F2B;
+    --footer-text: rgb(98, 148, 255);
 }
 
 * {
     padding: 0;
     margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
     background-color: var(--bgcolor);
     text-align: center;
+}
+
+header {
+    position: relative;
+    background-color: var(--bg-header-color);
+    height: 3.5rem;
+    box-shadow: 0 .5rem 1rem rgba(107, 107, 107, 0.1);
+}
+
+header .header_text {
+    display: inline-block;
+    line-height:2.25em;
+    vertical-align: middle;
+}
+
+.header_text {
+    align-items: center;
+    color: var(--textcolor);
 }
 
 h4 {
@@ -36,6 +57,7 @@ img {
 
 .category {
     display: block;
+    margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
@@ -43,4 +65,46 @@ img {
 
 .category_text {
     color: var(--textcolor);
+}
+
+footer {
+    padding-bottom: 0.5rem;
+}
+
+footer p {
+    font-size: small;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.span_text {
+    color: var(--footer-text);
+}
+
+.fixed {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-color: var(--bg-header-color);
+    top: 35rem;
+    right: 1rem;
+}
+
+.arrow {
+    border: solid rgb(255, 255, 255);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.up {
+    margin-top: 1.3rem;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
 }

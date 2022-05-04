@@ -1,7 +1,5 @@
 var after = "";
-var subredditName = "pics";
-
-// kemonomimi
+const subredditName = "pics";
 
 const category = {
   0 : "new",
@@ -14,12 +12,13 @@ console.log("by: https://luuqe.tk/");
 
 document.title = `Browsing pics from r/${subredditName}`;
 
+let getCategory = category[getRandomInt(0, 1)];
+
 async function fetchData() {
 
-  const response = await fetch(`https://www.reddit.com/r/${subredditName}/${category[0]}.json?after=${after}`);
+  const response = await fetch(`https://www.reddit.com/r/${subredditName}/${getCategory}.json?after=${after}`);
   const body = await response.json();
 
-  let getCategory = category[0];
   let displayCategory = document.getElementById("category_text");
   let displaySubredditName = document.getElementById("subreddit_name")
 
@@ -58,4 +57,10 @@ async function fetchData() {
   } catch (e) {
     console.log(`Error: ${e}`)
   }
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

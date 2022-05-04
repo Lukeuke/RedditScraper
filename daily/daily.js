@@ -1,5 +1,6 @@
 var after = "";
 var subredditName = "kemonomimi";
+var dailyNumer;
 
 // kemonomimi
 
@@ -32,14 +33,16 @@ async function fetchDailyData() {
       parentdiv.id = "anime_baby";
     
       after = body.data.after;
-      var dailyNumer = getCurrentDay(); // Jak na razie hardcode póki nie ogarne
+      var dt = new Date();
+      dailyNumer = dt.getDay();
+      console.log(getCurrentDay())
       console.log(body.data.children)
       console.log(body.data.children[dailyNumer].data.url)
       console.log(body.data.children[dailyNumer].data.post_hint === "image")
       
       var container = document.getElementById("container");
       
-      if(body.data.children[dailyNumer].data.post_hint !== "image"){
+      if(body.data.children[dailyNumer].data.post_hint !== "image") {
         let h4 = document.createElement("h4");
         let a = document.createElement("a");
 
@@ -76,12 +79,21 @@ async function fetchDailyData() {
     } catch (e) {
       console.log(`Error: ${e}`)
     }
-  }
-    
+
+    localStorage.setItem(`${body.data.children[dailyNumer].data.title}`, true);
+}
+
+function getFreshData() {
+  console.log("wykonano")
+  dailyNumer += 1;
+  fetchDailyData();
+  document.getElementById("get_fresh_data").remove()
+}
+
 function getCurrentDay() {
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
   var yyyy = today.getFullYear();
 
   today = mm + '/' + dd + '/' + yyyy;
